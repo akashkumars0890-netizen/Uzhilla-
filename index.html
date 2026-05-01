@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Uzhilla 💙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#a18cd1);
+color:white;
+text-align:center;
+overflow:hidden;
+height:100vh;
+width:100vw;
+}
+
+.page{
+display:none;
+height:100vh;
+width:100vw;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:15px;
+box-sizing:border-box;
+}
+
+.active{display:flex;}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:white;
+color:#ff4e8a;
+font-weight:bold;
+margin:10px;
+cursor:pointer;
+}
+
+#noBtn{position:absolute;}
+
+.progress{width:80%;height:20px;background:rgba(255,255,255,0.3);border-radius:20px;}
+.bar{height:100%;width:0%;background:white;}
+
+.drop{
+position:fixed;
+top:-20px;
+font-size:22px;
+animation:fall linear forwards;
+pointer-events:none;
+}
+@keyframes fall{
+to{transform:translateY(110vh);}
+}
+
+#gameArea{
+width:90%;
+height:300px;
+border:2px dashed white;
+position:relative;
+overflow:hidden;
+}
+.choco{
+position:absolute;
+font-size:25px;
+cursor:pointer;
+}
+
+.envelope{
+width:200px;
+height:120px;
+background:white;
+border-radius:10px;
+cursor:pointer;
+position:relative;
+}
+.envelope:before{
+content:'';
+position:absolute;
+top:-60px;
+left:0;
+border-left:100px solid transparent;
+border-right:100px solid transparent;
+border-bottom:60px solid white;
+}
+
+.letter{
+display:none;
+max-width:500px;
+background:rgba(0,0,0,0.3);
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page active" id="p1">
+<h1>Welcome Uzhilla 💙</h1>
+<p>Type your full name</p>
+<input id="name" style="padding:10px;border-radius:10px;border:none;text-align:center;">
+<button onclick="checkName()">Next</button>
+</div>
+
+<div class="page" id="p2">
+<img src="chick-pio.webp" style="width:120px;margin-bottom:10px;">
+<h1>⏳ Time Left For NEET Exam</h1>
+<div id="countdown"></div>
+<button onclick="next(3)">Next</button>
+</div>
+
+<div class="page" id="p3">
+<h2>Will you crack NEET? 💙</h2>
+<button onclick="next(4)">YES 💪</button>
+<button id="noBtn" onmouseover="moveNo()">NO 😅</button>
+</div>
+
+<div class="page" id="p4">
+<h2>🎮 Catch Chocolates</h2>
+<div id="gameArea"></div>
+<p>Score: <span id="score">0</span>/5</p>
+<button onclick="startGame()">Start Game</button>
+<button onclick="next(5)">Next</button>
+</div>
+
+<div class="page" id="p5">
+<h2>Confidence Booster 💙</h2>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<button onclick="boost()">Boost Confidence</button>
+
+<p id="gift" style="display:none;">
+🍫 Here’s your KinderJoy — because champions deserve treats too 😄💙
+</p>
+
+<img id="giftGif" src="love-heart.gif" style="width:120px;margin-top:10px; display:none;">
+
+<button onclick="next(6)">Next</button>
+</div>
+
+<div class="page" id="p6">
+<img src="you-can-do-it-you-can-do-this.webp" style="width:120px;margin-bottom:10px;">
+<h2>💌 Click to Read</h2>
+
+<div class="envelope" onclick="openLetter()"></div>
+
+<div class="letter" id="letter">
+<p style="text-align:left;">
+1. You didn’t come this far just to doubt yourself 💙<br>
+2. Your hard work is louder than your fear<br>
+3. Even toppers once felt nervous — and look at them now 😉<br>
+4. You are not “trying” — you are *doing it* 🔥<br>
+5. Your future patients are waiting for you 🩺<br>
+6. One exam doesn’t define you, but this one will reward you 💯<br>
+7. You are stronger than your overthinking<br>
+8. You’ve already done the toughest part — preparation<br>
+9. Trust your brain — it knows more than you think<br>
+10. Stay calm, your mind works best in peace<br>
+11. Confidence is your real superpower ⚡<br>
+12. You’re not alone — I believe in you 💙<br>
+13. Imagine your name on that selection list ✨<br>
+14. This is your moment — own it 🔥<br>
+15. Future Dr. Uzhilla Fatima… sounds perfect, right? 😄
+</p>
+
+<button onclick="next(7)">Next</button>
+</div>
+</div>
+
+<div class="page" id="p7">
+<h2>Generate Your Future ✨</h2>
+<button onclick="generate()">Generate My Rank</button>
+<p id="rankText"></p>
+
+<img id="rankGif" src="happy-nice.webp" style="width:120px;margin-top:10px; display:none;">
+
+<button onclick="next(8)">Next</button>
+</div>
+
+<div class="page" id="p8">
+<img src="health-doctor.webp" style="width:120px;margin-bottom:10px;">
+<h2>💙 For My Bestie 💙</h2>
+
+<p style="max-width:500px;text-align:left;">
+1. Oye bestie… you’re literally going to crack this exam 💙<br>
+2. I’ve seen your hard work — it’s not normal, it’s powerful 🔥<br>
+3. You panic sometimes, but still keep going… that’s strength 💯<br>
+4. You’re not alone — I’m always right here with you 😊<br>
+5. Even on your worst days, you’re still better than most ✨<br>
+6. You’ve already proved how strong you are<br>
+7. This exam is just one step — and you’re ready for it 🩺<br>
+8. Stop doubting… start trusting yourself 💪<br>
+9. Your dream is not far now… it’s very close ⏳<br>
+10. Future doctor? No… future legend 😄🔥<br>
+11. I know you’ll make it — no doubt at all 💙<br>
+12. Just stay calm and give your best<br>
+13. I’m already proud of you, no matter what 😊<br>
+14. But yeah… you ARE going to win this 💯<br>
+15. Now go and show the world what my bestie can do 🔥💙
+</p>
+
+</div>
+
+<script>
+
+function next(n){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById('p'+n).classList.add('active');
+}
+
+function checkName(){
+let n=document.getElementById("name").value.toLowerCase();
+if(n==="uzhilla fatima") next(2);
+else alert("Write full name 😊");
+}
+
+let exam=new Date("May 3, 2026").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let d=Math.floor((exam-now)/(1000*60*60*24));
+document.getElementById("countdown").innerText=d+" Days Left";
+},1000);
+
+function moveNo(){
+let btn=document.getElementById("noBtn");
+btn.style.top=Math.random()*80+"%";
+btn.style.left=Math.random()*80+"%";
+}
+
+function startGame(){
+let area=document.getElementById("gameArea");
+area.innerHTML="";
+let score=0;
+document.getElementById("score").innerText=0;
+
+for(let i=0;i<5;i++){
+let c=document.createElement("div");
+c.className="choco";
+c.innerHTML="🍫";
+c.style.left=Math.random()*90+"%";
+c.style.top=Math.random()*90+"%";
+
+c.onclick=()=>{
+score++;
+document.getElementById("score").innerText=score;
+c.remove();
+};
+
+area.appendChild(c);
+}
+}
+
+let val=0;
+function boost(){
+val+=20;
+document.getElementById("bar").style.width=val+"%";
+
+if(val>=100){
+document.getElementById("gift").style.display="block";
+document.getElementById("giftGif").style.display="block";
+}
+}
+
+function openLetter(){
+document.getElementById("letter").style.display="block";
+}
+
+function generate(){
+document.getElementById("rankText").innerText=
+"You will definitely crack NEET and become a doctor 💙🩺";
+
+document.getElementById("rankGif").style.display="block";
+
+for(let i=0;i<25;i++){
+let d=document.createElement("div");
+d.className="drop";
+d.innerHTML="🌸";
+d.style.left=Math.random()*100+"vw";
+d.style.animationDuration=(Math.random()*2+2)+"s";
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),4000);
+}
+}
+
+</script>
+
+</body>
+</html>
